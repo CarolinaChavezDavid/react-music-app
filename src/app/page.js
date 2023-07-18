@@ -1,25 +1,15 @@
 "use client";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { TrackCard } from "./dashboard/components/TrackCard";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
-import {
-  getPlayListTracks,
-  getTopTracksApi,
-} from "./spotifyAPI/getTopTracksAPI";
+import { DashboardPage } from "./dashboard/pages/DashboardPage";
 config.autoAddCss = false;
 
 export default function Home() {
-  const { token } = getTopTracksApi();
-
-  const { topTrackList } = getPlayListTracks({ token });
-
-  console.log(JSON.stringify(topTrackList));
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <TrackCard />
+      <DashboardPage />
     </main>
   );
 }

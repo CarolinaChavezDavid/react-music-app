@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 const clientId = "6dc5649b893a4cd2bc212fd773710664";
 const clientSecret = "e8de0d5f1d3a463398418954f2a777ca";
 const apiEndpoint = "https://accounts.spotify.com/api/token";
@@ -16,22 +14,19 @@ const authParameters = {
     clientSecret,
 };
 
-export const getTopTracksApi = () => {
-  const [token, setToken] = useState("");
-  useEffect(() => {
-    fetch(apiEndpoint, authParameters)
-      .then((result) => result.json())
-      .then((data) => setToken(data.access_token));
-  }, []);
+export const getCredentials = async () => {
+  const token = await fetch(apiEndpoint, authParameters)
+    .then((result) => result.json())
+    .then((data) => {
+      return data.access_token;
+    });
 
-  return { token };
+  return token;
 };
 
-export const getPlayListTracks = async ({ token }) => {
+export const getPlayListTracks = async (token) => {
   const playListEndPoint =
     "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF";
-
-  console.log("token received: " + token);
 
   const topListParameters = {
     method: "GET",
@@ -44,9 +39,35 @@ export const getPlayListTracks = async ({ token }) => {
   const topTrackList = await fetch(playListEndPoint, topListParameters)
     .then((result) => result.json())
     .then((data) => {
-      return data;
+      return data.tracks.items;
     });
 
-  console.log("response" + JSON.stringify(topTrackList));
-  return { topTrackList };
+  const tracks = topTrackList.map((item) => ({
+    id: item.track.id,
+    name: item.track.name,
+    album: transformAlbum(item.track.album),
+    artists: trasnFormArtist(item.track.artists),
+    duration: item.track.duration_ms,
+    previewUrl: item.track.preview_url,
+  }));
+
+  return tracks;
+};
+
+const transformAlbum = (album) => {
+  return {
+    id: album.id,
+    name: album.name,
+    albumType: album.album_type,
+    artist: trasnFormArtist(album.artists),
+    releaseDate: album.release_date,
+    imageUrl: album.images[0].url,
+  };
+};
+
+const trasnFormArtist = (artists) => {
+  return artists.map((element) => ({
+    id: element.id,
+    name: element.name,
+  }));
 };
