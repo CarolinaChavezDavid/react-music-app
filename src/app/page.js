@@ -4,11 +4,17 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { TrackCard } from "./dashboard/components/TrackCard";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { useSpotifyTopList } from "./hooks/useSpotifyTopList";
+import {
+  getPlayListTracks,
+  getTopTracksApi,
+} from "./spotifyAPI/getTopTracksAPI";
 config.autoAddCss = false;
 
 export default function Home() {
-  const { topTrackList } = useSpotifyTopList();
+  const { token } = getTopTracksApi();
+
+  const { topTrackList } = getPlayListTracks({ token });
+
   console.log(JSON.stringify(topTrackList));
 
   return (
