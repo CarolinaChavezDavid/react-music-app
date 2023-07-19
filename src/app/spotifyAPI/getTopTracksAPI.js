@@ -2,6 +2,9 @@ const clientId = "6dc5649b893a4cd2bc212fd773710664";
 const clientSecret = "e8de0d5f1d3a463398418954f2a777ca";
 const apiEndpoint = "https://accounts.spotify.com/api/token";
 
+const playListEndPoint =
+  "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF";
+
 const authParameters = {
   method: "POST",
   headers: {
@@ -20,14 +23,11 @@ export const getCredentials = async () => {
     .then((data) => {
       return data.access_token;
     });
-
+  console.log("response 2 " + JSON.stringify(token));
   return token;
 };
 
 export const getPlayListTracks = async (token) => {
-  const playListEndPoint =
-    "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF";
-
   const topListParameters = {
     method: "GET",
     headers: {
@@ -51,7 +51,37 @@ export const getPlayListTracks = async (token) => {
     previewUrl: item.track.preview_url,
   }));
 
+  console.log(JSON.stringify(tracks));
+
   return tracks;
+};
+
+export const getTrackList = async () => {
+  const tracks = await getCredentials().then((token) => {
+    fetch(playListEndPoint, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((result) => result.json())
+      .then((data) => {
+        return data.tracks.items;
+      });
+  });
+  console.log("response" + JSON.stringify(tracks));
+
+  const topTracks = tracks.map((item) => ({
+    id: item.track.id,
+    name: item.track.name,
+    album: transformAlbum(item.track.album),
+    artists: trasnFormArtist(item.track.artists),
+    duration: item.track.duration_ms,
+    previewUrl: item.track.preview_url,
+  }));
+
+  return topTracks;
 };
 
 const transformAlbum = (album) => {

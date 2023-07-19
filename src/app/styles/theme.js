@@ -1,10 +1,11 @@
 import { createTheme } from "@mui/material";
 import { common } from "@mui/material/colors";
+import GugiRegulartff from "./fonts/Gugi-Regular.tff";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#7400B8",
+      main: "#0084FF",
       light: "#5E60CE",
     },
     secondary: {
@@ -17,9 +18,9 @@ const theme = createTheme({
   },
   spacing: 2,
   typography: {
-    fontFamily: ["Raleway", "sans-serif"].join(","),
+    fontFamily: ["Gugi", "sans-serif"].join(","),
     h1: {
-      fontFamily: "Raleway",
+      fontFamily: "Gugi",
       fontSize: 25,
       lineHeight: 1.375,
       letterSpacing: 0,
@@ -78,26 +79,12 @@ const theme = createTheme({
             url(/fonts/typography/Raleway.woff2) format('woff2');
         }
         @font-face {
-          font-family: HelveticaNeueBold;
+          font-family: Gugi;
           font-display: swap;
           font-style: normal;
-          src: local('HelveticaNeueBold'),
-            url(/fonts/typography/HelveticaNeueBold.woff2) format('woff2');
+          src: local('Gugi-Regular'), url(${GugiRegulartff}) format('tff');
         }
-        @font-face {
-          font-family: ObelixProBold;
-          font-display: swap;
-          font-style: normal;
-          src: local('ObelixProBold'),
-            url(/fonts/typography/ObelixProBold.woff2) format('woff2');
-        }
-        @font-face {
-          font-family: ObelixProRegular;
-          font-display: swap;
-          font-style: normal;
-          src: local('ObelixProRegular'),
-            url(/fonts/typography/ObelixProRegular.woff2) format('woff2');
-        }
+
       `,
     },
     MuiButton: {

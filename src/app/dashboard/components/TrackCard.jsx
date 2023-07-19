@@ -1,30 +1,50 @@
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card, CardMedia, Grid, Typography } from "@mui/material";
+import Link from "next/link";
 
 export const TrackCard = ({ topTrackList }) => {
   return (
-    <Card>
-      <CardMedia
-        component="img"
-        sx={{ width: 200 }}
-        image="./AlbumCover.jpeg"
-        alt="Live from space album cover"
-      />
+    <Link href={`details/${topTrackList.id}`}>
+      <Card>
+        <CardMedia
+          component="img"
+          spacing={2}
+          image={topTrackList.album.imageUrl}
+          alt="Live from space album cover"
+        />
 
-      <Grid container direction="column" sx={{ p: 1 }}>
-        <Grid item container direction="row">
-          <Grid item xs={10}>
-            <Typography variant="h4">{topTrackList.name}</Typography>
+        <Grid container direction="row" sx={{ p: 1 }}>
+          <Grid item container direction="column" xs={10}>
+            <Grid item>
+              <Typography fontWeight="bold" variant="h6">
+                {topTrackList.name}
+              </Typography>
+            </Grid>
+
+            <Grid item>
+              <Typography variant="h6">
+                {topTrackList.artists[0].name}
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={2}>
-            <FontAwesomeIcon icon={faHeart} style={{ color: "#627737" }} />
+
+          <Grid
+            item
+            container
+            xs={2}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Grid item>
+              <FontAwesomeIcon
+                icon={faHeart}
+                style={{ color: "#121640", fontSize: "2rem" }}
+              />
+            </Grid>
           </Grid>
         </Grid>
-        <Grid item>
-          <Typography variant="h6">{topTrackList.artist[0].name}</Typography>
-        </Grid>
-      </Grid>
-    </Card>
+      </Card>
+    </Link>
   );
 };
