@@ -1,6 +1,7 @@
 "use client";
 import { AppBar, Box, Container, Grid, Tab, Tabs, styled } from "@mui/material";
 import { common } from "@mui/material/colors";
+import Link from "next/link";
 import { useState } from "react";
 import { Logo } from "./Logo";
 
@@ -16,6 +17,7 @@ const AntTabs = styled(Tabs)({
   padding: 10,
   borderRadius: 10,
   width: "100%",
+  marginRight: "20",
   backgroud: "linear-gradient(60deg, #ab47bc, #8e24aa)",
   "& .MuiTabs-indicator": {
     backgroundColor: "rgba(255, 255, 255, .2)",
@@ -73,16 +75,19 @@ export const TopNavigation = () => {
           <Grid item>
             <Logo />
           </Grid>
-          <Grid item>
+          <Grid item sx={{}}>
             <Box>
               <AntTabs
                 value={value}
                 onChange={handleChange}
                 aria-label="basic tabs example"
               >
-                <AntTab label="Favorites" {...a11yProps(0)} />
-                <AntTab label="Item Two" {...a11yProps(1)} />
-                <AntTab label="Item Three" {...a11yProps(2)} />
+                <Link href="/">
+                  <AntTab label="Music" {...a11yProps(0)} />
+                </Link>
+                <Link href="favorites">
+                  <AntTab label="Favorites" {...a11yProps(0)} />
+                </Link>
               </AntTabs>
               |
             </Box>
