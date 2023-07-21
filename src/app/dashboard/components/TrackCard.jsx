@@ -2,11 +2,24 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card, CardMedia, Grid, Typography } from "@mui/material";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { setTrackDetailInformation } from "../../redux/services/thunks";
 
 export const TrackCard = ({ topTrackList }) => {
+  const dispatch = useDispatch();
+
+  const handelUpdate = () => {
+    dispatch(setTrackDetailInformation(topTrackList));
+    console.log("track: " + JSON.stringify(topTrackList));
+  };
   return (
-    <Link href={`details/${topTrackList.id}`}>
-      <Card>
+    <Link
+      href={{
+        pathname: `details/${topTrackList.id}`,
+      }}
+      style={{ textDecoration: "none" }}
+    >
+      <Card onClick={() => handelUpdate()}>
         <CardMedia
           component="img"
           spacing={2}

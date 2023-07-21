@@ -1,6 +1,11 @@
+"use client";
 import { Box, Card, CardMedia, Container, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 
-export const TrackDetail = ({ track }) => {
+export default function Page() {
+  const track = useSelector((state) => state.track);
+
+  console.log("result" + JSON.stringify(track));
   return (
     <Container maxWidth="xl" sx={{ pt: "100px", pb: "250px" }}>
       <Card sx={{ mt: 5, width: "350px", borderRadius: "16px" }}>
@@ -32,6 +37,4 @@ export const TrackDetail = ({ track }) => {
       </Card>
     </Container>
   );
-};
-
-export default TrackDetail;
+}
