@@ -22,6 +22,12 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+html {
+  width: 100%;
+  height: 100%;
+  background-color: "#FF00E6";
+}
+
 @font-face {
   font-family: Gugi-Regular;
   font-weight: normal;

@@ -23,7 +23,6 @@ const AntTabs = styled(Tabs)({
     backgroundColor: "rgba(255, 255, 255, .2)",
     height: "100%",
     borderRadius: 10,
-
     display: "block",
   },
 });
@@ -37,7 +36,6 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
       minWidth: 0,
     },
     fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing(1),
     color: "#FFFFFF",
 
     "&:hover": {

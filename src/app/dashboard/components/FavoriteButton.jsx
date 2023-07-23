@@ -28,6 +28,7 @@ export const FavoriteButton = ({ track }) => {
             ? " isFavorite"
             : "")
         }
+        style={{ fontSize: "2rem" }}
       />
     </Box>
   );

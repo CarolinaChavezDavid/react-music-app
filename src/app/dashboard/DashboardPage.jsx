@@ -1,9 +1,17 @@
 import { Container, Grid, Typography } from "@mui/material";
-import { topTrackListSpotify } from "../spotifyAPI/TopTrackListSpotify";
+import { useSpotifyTopList } from "../hooks/useSpotifyTopList";
 import { TrackCard } from "./components/TrackCard";
 
 export const DashboardPage = () => {
-  const tracks = topTrackListSpotify;
+  const { isLoading, topTrackList } = useSpotifyTopList();
+
+  if (isLoading) {
+    return (
+      <Container
+        style={{ flex: 1, justifyContent: "center", alignContent: "center" }}
+      ></Container>
+    );
+  }
 
   return (
     <Container maxWidth="xl" sx={{ pt: "100px", pb: "250px" }}>
@@ -12,8 +20,8 @@ export const DashboardPage = () => {
       </Typography>
 
       <Grid container sx={{ mt: 10 }}>
-        {tracks.map((item) => (
-          <Grid item key={item.id} xs={12} sm={6} md={3}>
+        {topTrackList.map((item) => (
+          <Grid item key={item.id} display="flex" sm={6} md={3}>
             <TrackCard track={item} />
           </Grid>
         ))}

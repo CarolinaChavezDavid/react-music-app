@@ -1,11 +1,10 @@
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar, Card, Grid, Typography } from "@mui/material";
+import { FavoriteButton } from "../../dashboard/components/FavoriteButton";
 
 export const TrackComponent = ({ track }) => {
   return (
     <Card
-      sx={{ display: "flex", p: 1, bgcolor: "#F8F9FA", borderRadius: "20rem" }}
+      sx={{ display: "flex", p: 5, bgcolor: "#F8F9FA", borderRadius: "20rem" }}
     >
       <Grid container direction="row" justifyContent="left" alignItems="center">
         <Grid item xs={1} sx={{ ml: 2 }}>
@@ -33,10 +32,7 @@ export const TrackComponent = ({ track }) => {
           </Typography>
         </Grid>
         <Grid item xs={1}>
-          <FontAwesomeIcon
-            icon={faHeart}
-            style={{ color: "#121640", fontSize: "2rem" }}
-          />
+          <FavoriteButton track={track} />
         </Grid>
       </Grid>
     </Card>

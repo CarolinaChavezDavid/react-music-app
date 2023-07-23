@@ -18,7 +18,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <link rel="stylesheet" href="../globals.css" />
       <body>
         <ThemeProvider theme={theme}>
           <CssBaseline />

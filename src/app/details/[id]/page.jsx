@@ -1,40 +1,46 @@
 "use client";
-import { Box, Card, CardMedia, Container, Typography } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import { useSelector } from "react-redux";
+import useArtistTopTracks from "../../hooks/useArtistTopTracks";
+import { ArtistTopTracks } from "./components/ArtistTopTracks";
+import { DetailHeader } from "./components/DetailHeader";
+import { PlayCard } from "./components/PlayCard";
 
 export default function Page() {
+  // `${track.artists[0].id}`
   const track = useSelector((state) => state.track);
+  console.log("tracls", track);
+  const { artistTrackList, isLoading } = useArtistTopTracks(
+    "3Nrfpe0tUJi4K4DXYWgMUX"
+  );
 
-  console.log("result" + JSON.stringify(track));
+  console.log("artistList", artistTrackList);
+
+  if (isLoading) {
+    return (
+      <Container
+        style={{ flex: 1, justifyContent: "center", alignContent: "center" }}
+      ></Container>
+    );
+  }
+
   return (
-    <Container maxWidth="xl" sx={{ pt: "100px", pb: "250px" }}>
-      <Card sx={{ mt: 5, width: "350px", borderRadius: "16px" }}>
-        <Box
-          sx={{ p: 2, display: "flex", flexDirection: "column" }}
-          alignItems="center"
-          justifyContent="center"
-        >
-          <CardMedia
-            component="img"
-            sx={{ width: 200, borderRadius: "50%" }}
-            image={track.album.imageUrl}
-            alt="Live from space album cover"
-          />
-
-          <Typography variant="h4" sx={{ mt: 2 }}>
-            {track.name}
-          </Typography>
-          {track.artists.map((item) => (
-            <Typography variant="h6">{item.name}</Typography>
-          ))}
-
-          <Box sx={{ mt: 3 }}>
-            <audio controls="controls">
-              <source src={track.previewUrl} type="audio/mpeg" />
-            </audio>
-          </Box>
-        </Box>
-      </Card>
+    <Container
+      maxWidth="xl"
+      sx={{
+        pt: "100px",
+        pb: "250px",
+      }}
+    >
+      {artistTrackList && <DetailHeader artist={artistTrackList} />}
+      <Grid container sx={{ mt: 10 }} spacing={15}>
+        <Grid item xs={4}>
+          <PlayCard key={track.id} track={track} />
+        </Grid>
+        <Grid item xs={8}>
+          <ArtistTopTracks tracks={artistTrackList.tracks} />
+        </Grid>
+      </Grid>
     </Container>
   );
 }
