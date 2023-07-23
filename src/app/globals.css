@@ -21,3 +21,10 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+@font-face {
+  font-family: Gugi-Regular;
+  font-weight: normal;
+  font-style: normal;
+  src: url("public/fonts/Gugi-Regular.ttf");
+}

@@ -7,7 +7,7 @@ const initialState = {
   artists: [],
   duration: "",
   previewUrl: "",
-  isFavorit: false,
+  isFavorite: false,
 };
 
 export const trackSlice = createSlice({
@@ -21,11 +21,15 @@ export const trackSlice = createSlice({
       state.artists = payload.artists;
       state.duration = payload.duration;
       state.previewUrl = payload.previewUrl;
+      state.isFavorite = false;
+    },
+
+    setIsFavorite: (state) => {
+      state.isFavorite = !state.isFavorite;
     },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { setTrack } = trackSlice.actions;
+export const { setTrack, setIsFavorite } = trackSlice.actions;
 
 export default trackSlice.reducer;

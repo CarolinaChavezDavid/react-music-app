@@ -1,87 +1,54 @@
-const clientId = "6dc5649b893a4cd2bc212fd773710664";
-const clientSecret = "e8de0d5f1d3a463398418954f2a777ca";
-const apiEndpoint = "https://accounts.spotify.com/api/token";
-
-const playListEndPoint =
+const CLIENT_ID = "6dc5649b893a4cd2bc212fd773710664";
+const CLIENT_SECRET = "e8de0d5f1d3a463398418954f2a777ca";
+const API_ENDPOINT = "https://accounts.spotify.com/api/token";
+const PLAYLIST_ENDPOINT =
   "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF";
 
-const authParameters = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded",
-  },
-  body:
-    "grant_type=client_credentials&client_id=" +
-    clientId +
-    "&client_secret=" +
-    clientSecret,
-};
-
 export const getCredentials = async () => {
-  const token = await fetch(apiEndpoint, authParameters)
-    .then((result) => result.json())
-    .then((data) => {
-      return data.access_token;
-    });
-  console.log("response 2 " + JSON.stringify(token));
-  return token;
-};
-
-export const getPlayListTracks = async (token) => {
-  const topListParameters = {
-    method: "GET",
+  const authParameters = {
+    method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: "Bearer " + token,
     },
+    body:
+      "grant_type=client_credentials&client_id=" +
+      CLIENT_ID +
+      "&client_secret=" +
+      CLIENT_SECRET,
   };
 
-  const topTrackList = await fetch(playListEndPoint, topListParameters)
-    .then((result) => result.json())
-    .then((data) => {
-      return data.tracks.items;
-    });
-
-  const tracks = topTrackList.map((item) => ({
-    id: item.track.id,
-    name: item.track.name,
-    album: transformAlbum(item.track.album),
-    artists: trasnFormArtist(item.track.artists),
-    duration: item.track.duration_ms,
-    previewUrl: item.track.preview_url,
-  }));
-
-  console.log(JSON.stringify(tracks));
-
-  return tracks;
+  const response = await fetch(API_ENDPOINT, authParameters);
+  if (response.ok) {
+    const jsonResponse = await response.json();
+    // console.log("token: ", jsonResponse.access_token);
+    return jsonResponse.access_token;
+  }
 };
 
 export const getTrackList = async () => {
-  const tracks = await getCredentials().then((token) => {
-    fetch(playListEndPoint, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((result) => result.json())
-      .then((data) => {
-        return data.tracks.items;
-      });
+  const token = await getCredentials();
+
+  const response = await fetch(PLAYLIST_ENDPOINT, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: `Bearer ${token}`,
+    },
   });
-  console.log("response" + JSON.stringify(tracks));
 
-  const topTracks = tracks.map((item) => ({
-    id: item.track.id,
-    name: item.track.name,
-    album: transformAlbum(item.track.album),
-    artists: trasnFormArtist(item.track.artists),
-    duration: item.track.duration_ms,
-    previewUrl: item.track.preview_url,
-  }));
+  if (response.ok) {
+    const jsonResponse = await response.json();
+    const finalTracks = jsonResponse.tracks.items.map((item) => ({
+      id: item.track.id,
+      name: item.track.name,
+      album: transformAlbum(item.track.album),
+      artists: transFormArtist(item.track.artists),
+      duration: item.track.duration_ms,
+      previewUrl: item.track.preview_url,
+    }));
 
-  return topTracks;
+    return finalTracks;
+  }
 };
 
 const transformAlbum = (album) => {
@@ -89,13 +56,13 @@ const transformAlbum = (album) => {
     id: album.id,
     name: album.name,
     albumType: album.album_type,
-    artist: trasnFormArtist(album.artists),
+    artist: transFormArtist(album.artists),
     releaseDate: album.release_date,
     imageUrl: album.images[0].url,
   };
 };
 
-const trasnFormArtist = (artists) => {
+const transFormArtist = (artists) => {
   return artists.map((element) => ({
     id: element.id,
     name: element.name,

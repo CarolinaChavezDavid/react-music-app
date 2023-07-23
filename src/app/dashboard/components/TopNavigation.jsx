@@ -75,7 +75,7 @@ export const TopNavigation = () => {
           <Grid item>
             <Logo />
           </Grid>
-          <Grid item sx={{}}>
+          <Grid item>
             <Box>
               <AntTabs
                 value={value}

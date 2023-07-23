@@ -1,61 +1,58 @@
-"use client";
+import { useEffect, useState } from "react";
 
-import { useState } from "react";
+const PLAYLIST_ENDPOINT =
+  "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF";
 
-export const useSpotifyTopList = async () => {
-  const playListEndPoint =
-    "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF";
-  const clientId = "6dc5649b893a4cd2bc212fd773710664";
-  const clientSecret = "e8de0d5f1d3a463398418954f2a777ca";
-  const apiEndpoint = "https://accounts.spotify.com/api/token";
+export const useSpotifyTopList = () => {
+  const [topTrackList, setTopTrackList] = useState([]);
 
-  const authParameters = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body:
-      "grant_type=client_credentials&client_id=" +
-      clientId +
-      "&client_secret=" +
-      clientSecret,
+  const getPlayList = async () => {
+    const token = await getCredentials();
+    console.log("token", token);
+    const response = await fetch(PLAYLIST_ENDPOINT, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      const finalTracks = jsonResponse.tracks.items.map((item) => ({
+        id: item.track.id,
+        name: item.track.name,
+        album: transformAlbum(item.track.album),
+        artists: transFormArtist(item.track.artists),
+        duration: item.track.duration_ms,
+        previewUrl: item.track.preview_url,
+      }));
+
+      setTopTrackList(finalTracks);
+    }
   };
 
-  const [token, setToken] = useState();
-  const [topTrackList, setTopTrackList] = useState();
+  useEffect(() => {
+    getPlayList();
+  }, []);
 
-  await fetch(apiEndpoint, authParameters)
-    .then((result) => result.json())
-    .then((data) => setToken(data.access_token));
+  return topTrackList;
+};
 
-  console.log("token" + token);
-
-  const topListParameters = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: "Bearer " + token,
-    },
+const transformAlbum = (album) => {
+  return {
+    id: album.id,
+    name: album.name,
+    albumType: album.album_type,
+    artist: transFormArtist(album.artists),
+    releaseDate: album.release_date,
+    imageUrl: album.images[0].url,
   };
+};
 
-  try {
-    var resp = [];
-    await fetch(playListEndPoint, topListParameters)
-      .then((result) => result.json())
-      .then((data) => (resp = data.tracks.items));
-
-    resp.map((item) => ({
-      id: item.id,
-      name: item.name,
-      album: item.album,
-      artist: item.artists,
-      durationn: item.duration_ms,
-    }));
-    //console.log("respuesta" + resp.map((item) =>({item.name})));
-    setTopTrackList(resp);
-  } catch (error) {
-    console.log(error);
-  }
-
-  return { topTrackList };
+const transFormArtist = (artists) => {
+  return artists.map((element) => ({
+    id: element.id,
+    name: element.name,
+  }));
 };

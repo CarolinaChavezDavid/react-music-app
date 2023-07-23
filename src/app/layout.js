@@ -1,8 +1,10 @@
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Inter } from "next/font/google";
 import { TopNavigation } from "./dashboard/components/TopNavigation";
-import Providers from "./redux/services/providers";
+import Providers from "./state/services/providers";
+import theme from "./styles/theme";
 
 config.autoAddCss = false;
 
@@ -16,9 +18,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <TopNavigation />
-        <Providers>{children}</Providers>
+      <link rel="stylesheet" href="../globals.css" />
+      <body>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <TopNavigation />
+          <Providers>{children}</Providers>
+        </ThemeProvider>
       </body>
     </html>
   );

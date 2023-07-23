@@ -5,7 +5,7 @@ import Link from "next/link";
 export const Logo = () => {
   return (
     <Link href="/" style={{ textDecoration: "none" }}>
-      <Grid container direction="row" alignItems="center" spacing={2}>
+      <Grid container direction="row" alignItems="center">
         <Grid item>
           <img
             style={{ width: 180, height: 100 }}
@@ -15,7 +15,7 @@ export const Logo = () => {
         </Grid>
 
         <Grid item>
-          <Typography variant="h4" color={common.white}>
+          <Typography component="h1" color={common.white}>
             MusicApp
           </Typography>
         </Grid>

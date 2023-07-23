@@ -1,0 +1,9 @@
+.Heart {
+  cursor: pointer;
+  font-weight: 1000;
+}
+
+.isFavorite {
+  font-weight: 700;
+  color: #fd2d47;
+}
