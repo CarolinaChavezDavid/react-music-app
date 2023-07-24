@@ -6,11 +6,16 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
 import { useSpotifyTopList } from "../hooks/useSpotifyTopList";
 import { TrackCard } from "./components/TrackCard";
 
 export const DashboardPage = () => {
   const { isLoading, topTrackList } = useSpotifyTopList();
+
+  const [query, setQuery] = useState("");
+
+  console.log("query", topTrackList);
 
   if (isLoading) {
     return (
@@ -19,6 +24,12 @@ export const DashboardPage = () => {
       ></Container>
     );
   }
+
+  console.log(
+    "filter",
+
+    topTrackList.filter((track) => track.name.toLowerCase().includes("vampire"))
+  );
 
   return (
     <Container maxWidth="xl" sx={{ pt: "100px", pb: "250px" }}>
@@ -41,9 +52,14 @@ export const DashboardPage = () => {
           sx={{
             p: "2px 4px",
             width: 500,
+            mx: "1rem",
           }}
         >
-          <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search your song" />
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Search your song"
+            onChange={(e) => setQuery(e.target.value)}
+          />
         </Paper>
       </Box>
       <Typography
@@ -55,11 +71,13 @@ export const DashboardPage = () => {
       </Typography>
 
       <Grid container sx={{ mt: 10 }}>
-        {topTrackList.map((item) => (
-          <Grid item key={item.id} display="flex" sm={6} md={3}>
-            <TrackCard track={item} />
-          </Grid>
-        ))}
+        {topTrackList
+          .filter((track) => track.name.toLowerCase().includes(query))
+          .map((item) => (
+            <Grid item key={item.id} display="flex" sm={6} md={3}>
+              <TrackCard track={item} />
+            </Grid>
+          ))}
       </Grid>
     </Container>
   );

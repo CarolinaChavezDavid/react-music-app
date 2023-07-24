@@ -7,7 +7,6 @@ import "./DashboardStyle.css";
 
 export const FavoriteButton = ({ track }) => {
   const { favoriteTracks } = useSelector((state) => state.favorites);
-  console.log("fav tracks", favoriteTracks);
   const dispatch = useDispatch();
 
   const handleToogle = () => {

@@ -19,7 +19,9 @@ export const PlayCard = ({ track }) => {
           {track.name}
         </Typography>
         {track.artists.map((item) => (
-          <Typography variant="h6">{item.name}</Typography>
+          <Typography key={item.id} variant="h6">
+            {item.name}
+          </Typography>
         ))}
 
         <Box sx={{ mt: 3 }}>

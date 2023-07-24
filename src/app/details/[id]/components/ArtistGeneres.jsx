@@ -43,7 +43,7 @@ export const ArtistGeneres = (generes) => {
     >
       <Grid container spacing={4}>
         {generes.generes.map((item, index) => (
-          <Grid item>
+          <Grid key={index} item>
             <CustomCard
               c1={gradientColors[index].c1}
               c2={gradientColors[index].c2}

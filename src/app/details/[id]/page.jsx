@@ -47,7 +47,7 @@ export default function Page() {
         </Grid>
         <Grid item xs={8}>
           <Box>
-            <Typography variant="h4" sx={{ mb: 3, my: 10, fontWeight: "bold" }}>
+            <Typography variant="h4" sx={{ mb: 10, fontWeight: "bold" }}>
               Top tracks
             </Typography>
             <ArtistTopTracks tracks={artistTrackList.tracks} />
