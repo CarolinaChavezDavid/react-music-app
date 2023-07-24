@@ -18,7 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ background: `linear-gradient(90deg, #F2F2F2, #CCCCCC)` }}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <TopNavigation />

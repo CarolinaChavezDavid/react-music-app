@@ -4,7 +4,13 @@ import { FavoriteButton } from "../../dashboard/components/FavoriteButton";
 export const TrackComponent = ({ track }) => {
   return (
     <Card
-      sx={{ display: "flex", p: 5, bgcolor: "#F8F9FA", borderRadius: "20rem" }}
+      sx={{
+        display: "flex",
+        p: 5,
+        bgcolor: "#F8F9FA",
+        borderRadius: "20rem",
+        my: 5,
+      }}
     >
       <Grid container direction="row" justifyContent="left" alignItems="center">
         <Grid item xs={1} sx={{ ml: 2 }}>

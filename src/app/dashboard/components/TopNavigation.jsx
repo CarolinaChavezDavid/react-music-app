@@ -1,9 +1,30 @@
 "use client";
-import { AppBar, Box, Container, Grid, Tab, Tabs, styled } from "@mui/material";
+import { AppBar, Container, Grid, Typography, styled } from "@mui/material";
 import { common } from "@mui/material/colors";
-import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { CustomLink } from "./CustomLink";
 import { Logo } from "./Logo";
+
+const Link = styled(CustomLink)(({ theme }) => ({
+  color: common.white,
+  textTransform: "none",
+  borderRadius: 0,
+  marginTop: "40px",
+  width: "100px",
+  padding: 0,
+  "&:after": {
+    backgroundColor: common.white,
+    content: '""',
+    height: "3px",
+    marginLeft: "auto",
+    marginRight: "auto",
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: "-8px",
+    width: "100%",
+  },
+}));
 
 const CustomHeader = styled(AppBar)(({ theme }) => ({
   color: common.black,
@@ -13,82 +34,44 @@ const CustomHeader = styled(AppBar)(({ theme }) => ({
   zIndex: theme.zIndex.modal,
 }));
 
-const AntTabs = styled(Tabs)({
-  padding: 10,
-  borderRadius: 10,
-  width: "100%",
-  marginRight: "20",
-  backgroud: "linear-gradient(60deg, #ab47bc, #8e24aa)",
-  "& .MuiTabs-indicator": {
-    backgroundColor: "rgba(255, 255, 255, .2)",
-    height: "100%",
-    borderRadius: 10,
-    display: "block",
-  },
-});
-
-const AntTab = styled((props) => <Tab disableRipple {...props} />)(
-  ({ theme }) => ({
-    textTransform: "none",
-    minWidth: 0,
-    fontSize: "20px",
-    [theme.breakpoints.up("sm")]: {
-      minWidth: 0,
-    },
-    fontWeight: theme.typography.fontWeightRegular,
-    color: "#FFFFFF",
-
-    "&:hover": {
-      color: "#FF00E6",
-      opacity: 1,
-    },
-    "&.Mui-selected": {
-      color: "#00C4CC",
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    "&.Mui-focusVisible": {
-      backgroundColor: "#d1eaff",
-    },
-  })
-);
-
 export const TopNavigation = () => {
-  const [value, setValue] = useState(0);
+  const router = useRouter();
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  function a11yProps(index) {
-    return {
-      id: `simple-tab-${index}`,
-      "aria-controls": `simple-tabpanel-${index}`,
-    };
-  }
+  const links = [
+    {
+      text: "Music",
+      href: "/",
+    },
+    {
+      text: "Favorites",
+      href: "favorites",
+    },
+  ];
 
   return (
     <CustomHeader>
       <Container maxWidth="xl" component="nav" sx={{ p: 1 }}>
-        <Grid container direction="row" alignItems="flex-end">
+        <Grid container direction="row" alignItems="center" spacing={6}>
           <Grid item>
             <Logo />
           </Grid>
-          <Grid item>
-            <Box>
-              <AntTabs
-                value={value}
-                onChange={handleChange}
-                aria-label="basic tabs example"
-              >
-                <Link href="/">
-                  <AntTab label="Music" {...a11yProps(0)} />
+          <Grid item alignItems="center" justifyContent="center">
+            {links.map((item) => {
+              return (
+                <Link
+                  href={item.href}
+                  key={item.text}
+                  variant="text"
+                  sx={{
+                    "&:after": {
+                      display: router.pathname === item.href ? "block" : "none",
+                    },
+                  }}
+                >
+                  <Typography variant="h2">{item.text}</Typography>
                 </Link>
-                <Link href="favorites">
-                  <AntTab label="Favorites" {...a11yProps(0)} />
-                </Link>
-              </AntTabs>
-              |
-            </Box>
+              );
+            })}
           </Grid>
         </Grid>
       </Container>

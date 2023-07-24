@@ -15,7 +15,7 @@ export const Logo = () => {
         </Grid>
 
         <Grid item>
-          <Typography component="h1" color={common.white}>
+          <Typography variant="h1" color={common.white}>
             MusicApp
           </Typography>
         </Grid>

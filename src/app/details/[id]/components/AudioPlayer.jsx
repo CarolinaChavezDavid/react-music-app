@@ -1,4 +1,4 @@
-import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePause, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef, useState } from "react";
 
@@ -19,7 +19,8 @@ export const AudioPlayer = (audioSrc) => {
   return (
     <div>
       <FontAwesomeIcon
-        icon={isPlaying ? faPause : faPlay}
+        icon={isPlaying ? faCirclePause : faCirclePlay}
+        style={{ fontSize: "2rem", color: "#121640" }}
         onClick={() => toggleAudio()}
       />
       <audio ref={audioRef}>

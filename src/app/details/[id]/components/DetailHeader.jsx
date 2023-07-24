@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
-import { Box, CardMedia, Grid, Rating, Typography } from "@mui/material";
+import { Box, Card, Grid, Rating, Typography } from "@mui/material";
 import { useState } from "react";
 import { ColorExtractor } from "react-color-extractor";
+import ImageShadow from "react-image-shadow";
 
 export const DetailHeader = (artist) => {
+  console.log("carolina", artist);
   const poster = artist.artist.artistImages[0].url;
 
   const [colors, setColors] = useState([]);
@@ -12,41 +14,47 @@ export const DetailHeader = (artist) => {
     setColors(colorPalette);
   };
 
-  console.log("artistTrackList", JSON.stringify(artist));
-
-  console.log("colors", colors);
-
   const CustomCardContent = styled(Box)(() => ({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
     justifyContent: "center",
-    alignContent: "flex-end",
-    position: "relative",
     width: "100%",
-    textAlign: "center",
-    padding: "16px 10px 45px",
+    padding: "50px",
     zIndex: 1,
     minHeight: 300,
     background: `linear-gradient(90deg, ${colors[0]}, ${colors[5]})`,
   }));
 
   return (
-    <Box sx={{ height: 300 }} justify="flex-end">
+    <Card
+      sx={{
+        height: 300,
+        borderRadius: "16px",
+      }}
+    >
       <ColorExtractor src={poster} getColors={handleColorsExtracted} />
       <Grid container direction="row" style={{ width: "100%" }}>
         <Grid item xs={2}>
-          <CardMedia
-            component="img"
-            image={poster}
-            alt="Live from space album cover"
-            sx={{ height: 300, width: 300 }}
-          />
+          <ImageShadow src={poster} sx={{ height: 300, width: 300 }} />
         </Grid>
         <Grid item xs={10} justify="flex-end">
           <CustomCardContent>
-            <Typography variant="h1">{artist.artist.artistName}</Typography>
-            <Rating name="customized-10" defaultValue={2} max={10} />
+            <Typography
+              sx={{ fontSize: 100, fontWeight: "bold", color: "#F2F2F2" }}
+            >
+              {artist.artist.artistName}
+            </Typography>
+            <Rating
+              readOnly
+              size="large"
+              name="customized-10"
+              defaultValue={artist.artist.popularity / 10}
+              max={10}
+            />
           </CustomCardContent>
         </Grid>
       </Grid>
-    </Box>
+    </Card>
   );
 };

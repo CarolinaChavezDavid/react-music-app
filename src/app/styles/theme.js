@@ -24,12 +24,10 @@ const theme = createTheme({
       lineHeight: 1.375,
     },
     h2: {
-      fontFamily: "Gugi-Regular",
       fontSize: 24,
       lineHeight: 1.45,
     },
     h3: {
-      fontFamily: "Gugi-Regular",
       fontSize: 20,
       lineHeight: 1.75,
     },

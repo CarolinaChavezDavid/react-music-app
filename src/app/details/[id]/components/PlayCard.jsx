@@ -4,7 +4,7 @@ export const PlayCard = ({ track }) => {
   return (
     <Card sx={{ width: "400px", borderRadius: "16px" }}>
       <Box
-        sx={{ p: 2, display: "flex", flexDirection: "column" }}
+        sx={{ p: 5, display: "flex", flexDirection: "column" }}
         alignItems="center"
         justifyContent="center"
       >
