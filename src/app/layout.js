@@ -18,6 +18,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <meta property="og:image" content="favicon.ico" />
+      <meta name="title" content="Music app" />
+      <meta property="og:title" content="Superhero App" />
+      <meta property="og:type" content="website" />
+      <meta
+        property="og:url"
+        content="https://react-music-app-liart.vercel.app/"
+      />
+
       <body style={{ background: `linear-gradient(90deg, #5459A6, #1E246E)` }}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
