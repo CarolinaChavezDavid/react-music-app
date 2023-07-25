@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { countriesListId } from "../api/CountriesListId";
+import { countriesListId } from "../api/countriesListId";
 import { TrackCard } from "../dashboard/components/TrackCard";
 import { updateCountryTracksList } from "../state/services/thunks";
 
