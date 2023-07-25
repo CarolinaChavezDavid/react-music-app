@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { setTrackDetailInformation } from "../../state/services/thunks";
 import { FavoriteButton } from "./FavoriteButton";
+
 export const TrackCard = ({ track }) => {
   const dispatch = useDispatch();
 
@@ -11,7 +12,10 @@ export const TrackCard = ({ track }) => {
   };
 
   return (
-    <Card sx={{ width: 300 }} onClick={() => handelUpdate()}>
+    <Card
+      sx={{ width: 300, backgroundColor: "#121640" }}
+      onClick={() => handelUpdate()}
+    >
       <Link
         href={{
           pathname: `details/${track.id}`,
@@ -29,7 +33,7 @@ export const TrackCard = ({ track }) => {
       <Grid container direction="row" sx={{ p: 10 }}>
         <Grid item container direction="column" xs={10}>
           <Grid item>
-            <Typography fontWeight="bold" variant="h6">
+            <Typography fontWeight="bold" variant="h3">
               {track.name}
             </Typography>
           </Grid>

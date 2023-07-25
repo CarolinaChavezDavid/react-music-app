@@ -2,9 +2,11 @@ import { Box, Card, CardMedia, Typography } from "@mui/material";
 
 export const PlayCard = ({ track }) => {
   return (
-    <Card sx={{ width: "400px", borderRadius: "16px" }}>
+    <Card
+      sx={{ width: "400px", borderRadius: "16px", backgroundColor: "#121640" }}
+    >
       <Box
-        sx={{ p: 5, display: "flex", flexDirection: "column" }}
+        sx={{ p: "2rem", display: "flex", flexDirection: "column" }}
         alignItems="center"
         justifyContent="center"
       >
@@ -15,11 +17,15 @@ export const PlayCard = ({ track }) => {
           alt="Live from space album cover"
         />
 
-        <Typography variant="h4" sx={{ mt: 2 }}>
+        <Typography
+          variant="h3"
+          style={{ fontWeight: "bold" }}
+          sx={{ my: "1rem" }}
+        >
           {track.name}
         </Typography>
         {track.artists.map((item) => (
-          <Typography key={item.id} variant="h6">
+          <Typography key={item.id} variant="h4">
             {item.name}
           </Typography>
         ))}

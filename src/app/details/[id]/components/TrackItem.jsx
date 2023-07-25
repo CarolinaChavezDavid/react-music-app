@@ -8,9 +8,9 @@ export const TrackItem = (track) => {
     <Paper
       elevation={0}
       sx={{
-        height: 100,
+        height: 80,
         display: "flex",
-        p: 5,
+        p: "1rem",
         bgcolor: "#F8F9FA",
         borderRadius: "1rem",
       }}
@@ -25,25 +25,25 @@ export const TrackItem = (track) => {
       >
         <Grid item xs={4}>
           <Typography
-            style={{ fontWeight: "bold" }}
-            variant="h6"
+            style={{ fontWeight: "bold", color: "#0B1147" }}
+            variant="h4"
             sx={{ mr: 3 }}
           >
-            {track.track.trackName}
+            🎵 {track.track.trackName}
           </Typography>
         </Grid>
         <Grid item xs={3}>
-          <Typography variant="h6" sx={{ mr: 3 }}>
+          <Typography variant="h4" style={{ color: "#0B1147" }} sx={{ mr: 3 }}>
             {track.track.albumName}
           </Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography variant="h6" sx={{ m: 3 }}>
+          <Typography variant="h4" style={{ color: "#0B1147" }} sx={{ m: 3 }}>
             {track.track.releaseDate}
           </Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography variant="h6" sx={{ m: 3 }}>
+          <Typography variant="h4" style={{ color: "#0B1147" }} sx={{ m: 3 }}>
             {convertMstoMin(track.track.duration)}
           </Typography>
         </Grid>

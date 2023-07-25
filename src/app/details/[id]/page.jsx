@@ -1,10 +1,11 @@
 "use client";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import useArtistTopTracks from "../../hooks/useArtistTopTracks";
 import { ArtistGeneres } from "./components/ArtistGeneres";
 import { ArtistTopTracks } from "./components/ArtistTopTracks";
 import { DetailHeader } from "./components/DetailHeader";
+import { DetailListHeader } from "./components/DetailListHeader";
 import { PlayCard } from "./components/PlayCard";
 
 export default function Page() {
@@ -39,7 +40,7 @@ export default function Page() {
           <Box>
             <PlayCard key={track.id} track={track} />
 
-            <Typography variant="h4" sx={{ mb: 3, my: 10, fontWeight: "bold" }}>
+            <Typography variant="h2" sx={{ mb: 3, my: 10, fontWeight: "bold" }}>
               Genres
             </Typography>
             <ArtistGeneres generes={artistTrackList.genres} />
@@ -47,9 +48,15 @@ export default function Page() {
         </Grid>
         <Grid item xs={8}>
           <Box>
-            <Typography variant="h4" sx={{ mb: 10, fontWeight: "bold" }}>
+            <Typography variant="h2" sx={{ mb: 10, fontWeight: "bold" }}>
               Top tracks
             </Typography>
+            <DetailListHeader />
+            <Divider
+              variant="middle"
+              style={{ color: "#F5F5FA" }}
+              sx={{ mb: 5 }}
+            />
             <ArtistTopTracks tracks={artistTrackList.tracks} />
           </Box>
         </Grid>

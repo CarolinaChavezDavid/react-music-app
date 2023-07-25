@@ -26,6 +26,15 @@ export const DetailHeader = (artist) => {
     background: `linear-gradient(90deg, ${colors[0]}, ${colors[5]})`,
   }));
 
+  const CustomRatingBar = styled(Rating)(() => ({
+    "& .MuiRating-iconEmpty": {
+      color: "#F2F2F2",
+    },
+    "& .MuiRating-iconFilled": {
+      color: "#ffd60a",
+    },
+  }));
+
   return (
     <Card
       sx={{
@@ -45,7 +54,7 @@ export const DetailHeader = (artist) => {
             >
               {artist.artist.artistName}
             </Typography>
-            <Rating
+            <CustomRatingBar
               readOnly
               size="large"
               name="customized-10"

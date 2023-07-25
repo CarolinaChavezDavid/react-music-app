@@ -39,8 +39,12 @@ export const TopNavigation = () => {
 
   const links = [
     {
-      text: "Music",
+      text: "Top global",
       href: "/",
+    },
+    {
+      text: "Top 50",
+      href: "country",
     },
     {
       text: "Favorites",
@@ -68,7 +72,7 @@ export const TopNavigation = () => {
                     },
                   }}
                 >
-                  <Typography variant="h2">{item.text}</Typography>
+                  <Typography style={{ fontSize: 24 }}>{item.text}</Typography>
                 </Link>
               );
             })}

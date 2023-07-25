@@ -1,8 +1,6 @@
 const CLIENT_ID = "6dc5649b893a4cd2bc212fd773710664";
 const CLIENT_SECRET = "e8de0d5f1d3a463398418954f2a777ca";
 const API_ENDPOINT = "https://accounts.spotify.com/api/token";
-const PLAYLIST_ENDPOINT =
-  "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF";
 
 export const getCredentials = async () => {
   const authParameters = {
@@ -25,7 +23,9 @@ export const getCredentials = async () => {
   }
 };
 
-export const getTrackList = async () => {
+export const getTrackList = async (playListsID) => {
+  console.log("playLIstId", playListsID);
+  const PLAYLIST_ENDPOINT = `https://api.spotify.com/v1/playlists/${playListsID}`;
   const token = await getCredentials();
 
   const response = await fetch(PLAYLIST_ENDPOINT, {

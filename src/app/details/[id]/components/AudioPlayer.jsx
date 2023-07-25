@@ -1,26 +1,25 @@
 import { faCirclePause, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const AudioPlayer = ({ audioSrc }) => {
   console.log("audio", audioSrc);
   const audioRef = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const toggleAudio = () => {
-    setIsPlaying(!isPlaying);
+  useEffect(() => {
     if (isPlaying) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
     }
-  };
+  }, [isPlaying, audioRef]);
 
   return (
     <div>
       <FontAwesomeIcon
         icon={isPlaying ? faCirclePause : faCirclePlay}
-        onClick={() => toggleAudio()}
+        onClick={() => setIsPlaying(!isPlaying)}
         style={{ fontSize: "2rem", color: "#121640" }}
       />
       <audio ref={audioRef}>

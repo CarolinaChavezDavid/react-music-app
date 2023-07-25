@@ -11,11 +11,11 @@ import { useSpotifyTopList } from "../hooks/useSpotifyTopList";
 import { TrackCard } from "./components/TrackCard";
 
 export const DashboardPage = () => {
-  const { isLoading, topTrackList } = useSpotifyTopList();
+  const { isLoading, topTrackList } = useSpotifyTopList(
+    "37i9dQZEVXbMDoHDwVN2tF"
+  );
 
   const [query, setQuery] = useState("");
-
-  console.log("query", topTrackList);
 
   if (isLoading) {
     return (
@@ -24,12 +24,6 @@ export const DashboardPage = () => {
       ></Container>
     );
   }
-
-  console.log(
-    "filter",
-
-    topTrackList.filter((track) => track.name.toLowerCase().includes("vampire"))
-  );
 
   return (
     <Container maxWidth="xl" sx={{ pt: "100px", pb: "250px" }}>
@@ -63,18 +57,25 @@ export const DashboardPage = () => {
         </Paper>
       </Box>
       <Typography
-        variant="h4"
+        variant="h2"
         sx={{ mb: 3, mt: 10 }}
         style={{ fontWeight: "bold" }}
       >
-        Top global
+        🌎 Top global
       </Typography>
 
       <Grid container sx={{ mt: 10 }}>
         {topTrackList
           .filter((track) => track.name.toLowerCase().includes(query))
           .map((item) => (
-            <Grid item key={item.id} display="flex" sm={6} md={3}>
+            <Grid
+              item
+              key={item.id}
+              display="flex"
+              sm={6}
+              md={3}
+              sx={{ mb: "2rem" }}
+            >
               <TrackCard track={item} />
             </Grid>
           ))}
