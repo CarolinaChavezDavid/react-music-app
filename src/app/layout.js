@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <meta property="og:image" content="favicon.ico" />
       <meta name="title" content="Music app" />
-      <meta property="og:title" content="Superhero App" />
+      <meta property="og:title" content="Music app" />
       <meta property="og:type" content="website" />
       <meta
         property="og:url"
