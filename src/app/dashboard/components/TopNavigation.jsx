@@ -8,21 +8,20 @@ import { Logo } from "./Logo";
 const Link = styled(CustomLink)(({ theme }) => ({
   color: common.white,
   textTransform: "none",
-  borderRadius: 0,
-  marginTop: "40px",
-  width: "100px",
-  padding: 0,
-  "&:after": {
-    backgroundColor: common.white,
-    content: '""',
-    height: "3px",
-    marginLeft: "auto",
-    marginRight: "auto",
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: "-8px",
-    width: "100%",
+  minWidth: 0,
+  fontSize: "20px",
+  fontWeight: "bold",
+  marginRight: "2rem",
+  color: "#FFFFFF",
+  "&:hover": {
+    color: "#FF00E6",
+    opacity: 1,
+  },
+  "&.Mui-selected": {
+    color: "#00C4CC",
+  },
+  "&.Mui-focusVisible": {
+    backgroundColor: "#d1eaff",
   },
 }));
 
