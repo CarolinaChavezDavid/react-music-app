@@ -1,7 +1,13 @@
+import styled from "@emotion/styled";
 import { Avatar, Card, Grid, Typography } from "@mui/material";
 import { FavoriteButton } from "../../dashboard/components/FavoriteButton";
 import { AudioPlayer } from "../../details/[id]/components/AudioPlayer";
 import { convertMstoMin } from "../../helpers/functions/convertMstoMin";
+
+export const TrackText = styled(Typography)({
+  fontWeight: "bold",
+  color: "#0B1147",
+});
 
 export const TrackComponent = ({ track }) => {
   return (
@@ -18,20 +24,20 @@ export const TrackComponent = ({ track }) => {
         <Grid item sx={{ mr: "2rem" }}>
           <Avatar sx={{ width: 60, height: 60 }} src={track.album.imageUrl} />
         </Grid>
-        <Grid item xs={2}>
-          <Typography variant="h6">{track.name}</Typography>
+        <Grid item xs={2} sx={{ mr: "2rem" }}>
+          <TrackText variant="h4">{track.name}</TrackText>
         </Grid>
 
         <Grid item xs={3}>
-          <Typography variant="h6" sx={{ mr: 3 }}>
+          <TrackText variant="h4" sx={{ mr: 3 }}>
             {track.album.name}
-          </Typography>
+          </TrackText>
         </Grid>
         <Grid item xs={2}>
-          <Typography variant="h6">{track.album.releaseDate}</Typography>
+          <TrackText variant="h4">{track.album.releaseDate}</TrackText>
         </Grid>
         <Grid item xs={2}>
-          <Typography variant="h6">{convertMstoMin(track.duration)}</Typography>
+          <TrackText variant="h4">{convertMstoMin(track.duration)}</TrackText>
         </Grid>
         <Grid item xs={1}>
           <FavoriteButton track={track} />

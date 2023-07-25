@@ -10,14 +10,20 @@ export default function Page() {
   console.log("favPage", favoriteTracks);
   return (
     <Container maxWidth="xl" sx={{ pt: "100px", pb: "250px", mt: 4 }}>
-      <Typography sx={{ my: 10 }} variant="h4">
-        Favorite tracks
+      <Typography
+        variant="h2"
+        sx={{ mb: 3, mt: 10 }}
+        style={{ fontWeight: "bold" }}
+      >
+        💗 Favorite tracks
       </Typography>
       <FavoriteListHeader />
       <Divider variant="middle" sx={{ mb: 5 }} />
 
       {favoriteTracks.length > 0 &&
-        favoriteTracks.map((track) => <TrackComponent track={track} />)}
+        favoriteTracks.map((track) => (
+          <TrackComponent key={track.id} track={track} />
+        ))}
     </Container>
   );
 }
