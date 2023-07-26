@@ -21,7 +21,6 @@ export const TrackItem = (track) => {
         justifyContent="left"
         alignItems="center"
         sx={{ width: "100%" }}
-        spacing={2}
       >
         <Grid item xs={4}>
           <Typography

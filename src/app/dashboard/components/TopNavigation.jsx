@@ -43,11 +43,11 @@ export const TopNavigation = () => {
     },
     {
       text: "Top 50",
-      href: "country",
+      href: "/country",
     },
     {
       text: "Favorites",
-      href: "favorites",
+      href: "/favorites",
     },
   ];
 

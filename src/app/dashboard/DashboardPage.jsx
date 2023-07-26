@@ -6,6 +6,7 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import "animate.css";
 import { useState } from "react";
 import { useSpotifyTopList } from "../hooks/useSpotifyTopList";
 import { TrackCard } from "./components/TrackCard";

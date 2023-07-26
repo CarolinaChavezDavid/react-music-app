@@ -1,4 +1,4 @@
-import { Card, CardMedia, Grid, Typography } from "@mui/material";
+import { Card, CardMedia, Grid, Typography, styled } from "@mui/material";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { setTrackDetailInformation } from "../../state/services/thunks";
@@ -11,10 +11,25 @@ export const TrackCard = ({ track }) => {
     dispatch(setTrackDetailInformation(track));
   };
 
+  const TrackCard = styled(Card)(({ theme }) => ({
+    backgroundColor: "#121640",
+    textTransform: "none",
+    width: "300",
+    boxShadow: "0px 13px 48px 14px rgba(0,0,0,0.1)",
+  }));
+
   return (
-    <Card
-      sx={{ width: 300, backgroundColor: "#121640" }}
+    <TrackCard
+      sx={{
+        width: 300,
+        backgroundColor: "#121640",
+        "&:hover": {
+          backgroundColor: "primary.main",
+          opacity: [0.9, 0.8, 0.7],
+        },
+      }}
       onClick={() => handelUpdate()}
+      className=" animate__animated animate__fadeInLeft"
     >
       <Link
         href={{
@@ -51,6 +66,6 @@ export const TrackCard = ({ track }) => {
           </Grid>
         </Grid>
       </Grid>
-    </Card>
+    </TrackCard>
   );
 };

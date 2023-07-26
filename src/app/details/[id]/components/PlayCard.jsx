@@ -3,10 +3,18 @@ import { Box, Card, CardMedia, Typography } from "@mui/material";
 export const PlayCard = ({ track }) => {
   return (
     <Card
-      sx={{ width: "400px", borderRadius: "16px", backgroundColor: "#121640" }}
+      sx={{
+        width: "400px",
+        borderRadius: "16px",
+        backgroundColor: "#121640",
+      }}
     >
       <Box
-        sx={{ p: "2rem", display: "flex", flexDirection: "column" }}
+        sx={{
+          p: "2rem",
+          display: "flex",
+          flexDirection: "column",
+        }}
         alignItems="center"
         justifyContent="center"
       >
@@ -25,7 +33,7 @@ export const PlayCard = ({ track }) => {
           {track.name}
         </Typography>
         {track.artists.map((item) => (
-          <Typography key={item.id} variant="h4">
+          <Typography key={item.id} variant="h3">
             {item.name}
           </Typography>
         ))}
