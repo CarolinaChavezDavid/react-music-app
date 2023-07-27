@@ -1,5 +1,12 @@
 "use client";
-import { AppBar, Container, Grid, Typography, styled } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Container,
+  Grid,
+  Typography,
+  styled,
+} from "@mui/material";
 import { common } from "@mui/material/colors";
 import { useRouter } from "next/navigation";
 import { CustomLink } from "./CustomLink";
@@ -8,21 +15,22 @@ import { Logo } from "./Logo";
 const Link = styled(CustomLink)(({ theme }) => ({
   color: common.white,
   textTransform: "none",
-  minWidth: 0,
   fontSize: "20px",
-  fontWeight: "bold",
   marginRight: "2rem",
   color: "#FFFFFF",
+
   "&:hover": {
     color: "#FF00E6",
     opacity: 1,
   },
-  "&.Mui-selected": {
-    color: "#00C4CC",
+  "&:active": {
+    background: `linear-gradient(90deg, #FF00E6, #FFFFFF)`,
   },
-  "&.Mui-focusVisible": {
-    backgroundColor: "#d1eaff",
-  },
+}));
+
+const CustomBox = styled(Box)(() => ({
+  borderRadius: "2rem",
+  "&.focusVisible": {},
 }));
 
 const CustomHeader = styled(AppBar)(({ theme }) => ({
@@ -53,28 +61,32 @@ export const TopNavigation = () => {
 
   return (
     <CustomHeader>
-      <Container maxWidth="xl" component="nav" sx={{ p: 1 }}>
-        <Grid container direction="row" alignItems="center" spacing={6}>
+      <Container maxWidth="xl" component="nav" sx={{ p: "1rem" }}>
+        <Grid container alignItems="center" spacing={6}>
           <Grid item>
             <Logo />
           </Grid>
-          <Grid item alignItems="center" justifyContent="center">
-            {links.map((item) => {
-              return (
-                <Link
-                  href={item.href}
-                  key={item.text}
-                  variant="text"
-                  sx={{
-                    "&:after": {
-                      display: router.pathname === item.href ? "block" : "none",
-                    },
-                  }}
-                >
-                  <Typography style={{ fontSize: 24 }}>{item.text}</Typography>
-                </Link>
-              );
-            })}
+          <Grid item>
+            <CustomBox>
+              {links.map((item) => {
+                return (
+                  <Link
+                    href={item.href}
+                    key={item.text}
+                    variant="text"
+                    sx={{
+                      "&:after": {
+                        display: router.pathname === "/" ? "active" : "",
+                      },
+                    }}
+                  >
+                    <Typography style={{ fontSize: 24 }}>
+                      {item.text}
+                    </Typography>
+                  </Link>
+                );
+              })}
+            </CustomBox>
           </Grid>
         </Grid>
       </Container>

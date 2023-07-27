@@ -2,14 +2,14 @@ import { Container, Grid, Typography } from "@mui/material";
 
 export const DetailListHeader = () => {
   return (
-    <Container maxWidth="xl" sx={{ display: "flex", p: 1 }}>
+    <Container maxWidth="xl" sx={{ display: "flex", p: "1rem" }}>
       <Grid
         container
         direction="row"
         justifyContent="center"
         alignItems="center"
       >
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <Typography style={{ fontWeight: "bold" }} variant="h3">
             Track
           </Typography>
@@ -25,7 +25,7 @@ export const DetailListHeader = () => {
             Date added
           </Typography>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <Typography style={{ fontWeight: "bold" }} variant="h3">
             Duration
           </Typography>

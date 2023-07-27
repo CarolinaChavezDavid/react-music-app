@@ -7,18 +7,17 @@ import { TrackComponent } from "./components/TrackComponent";
 
 export default function Page() {
   const { favoriteTracks } = useSelector((state) => state.favorites);
-  console.log("favPage", favoriteTracks);
   return (
-    <Container maxWidth="xl" sx={{ pt: "100px", pb: "250px", mt: 4 }}>
+    <Container maxWidth="xl" sx={{ p: "100px 0 250px, 0", mt: "10rem" }}>
       <Typography
         variant="h2"
-        sx={{ mb: 3, mt: 10 }}
-        style={{ fontWeight: "bold" }}
+        sx={{ m: "10px 0 3px 0", fontWeight: "bold" }}
+        style={{}}
       >
         💗 Favorite tracks
       </Typography>
       <FavoriteListHeader />
-      <Divider variant="middle" sx={{ mb: 5 }} />
+      <Divider variant="middle" sx={{ mb: "1rem" }} />
 
       {favoriteTracks.length > 0 &&
         favoriteTracks.map((track) => (

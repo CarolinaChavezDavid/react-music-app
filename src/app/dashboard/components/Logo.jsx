@@ -1,15 +1,17 @@
 import { Grid, Typography } from "@mui/material";
 import { common } from "@mui/material/colors";
+import Image from "next/image";
 import Link from "next/link";
 
 export const Logo = () => {
   return (
     <Link href="/" style={{ textDecoration: "none" }}>
-      <Grid container direction="row" alignItems="center">
+      <Grid container alignItems="center">
         <Grid item>
-          <img
-            style={{ width: 180, height: 100 }}
-            src="./images/appLogo.png"
+          <Image
+            width={180}
+            height={100}
+            src="/images/appLogo.png"
             alt="logo"
           />
         </Grid>

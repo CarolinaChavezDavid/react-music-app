@@ -18,7 +18,6 @@ export const getAPIToken = async () => {
   const response = await fetch(API_ENDPOINT, authParameters);
   if (response.ok) {
     const jsonResponse = await response.json();
-    // console.log("token: ", jsonResponse.access_token);
     return jsonResponse.access_token;
   }
 };

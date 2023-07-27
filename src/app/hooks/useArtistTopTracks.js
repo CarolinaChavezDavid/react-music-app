@@ -7,7 +7,6 @@ const useArtistTopTracks = (artistID) => {
 
   const getList = async () => {
     const response = await getArtistTopTracks(artistID);
-    console.log("reponse", response);
 
     const responseFormatted = transformArtist(response[1], response[0]);
 

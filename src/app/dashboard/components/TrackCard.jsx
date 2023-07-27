@@ -21,14 +21,14 @@ export const TrackCard = ({ track }) => {
   return (
     <TrackCard
       sx={{
-        width: 300,
+        width: "300px",
         backgroundColor: "#121640",
         "&:hover": {
           backgroundColor: "primary.main",
           opacity: [0.9, 0.8, 0.7],
         },
       }}
-      onClick={() => handelUpdate()}
+      onClick={handelUpdate}
       className=" animate__animated animate__fadeInLeft"
     >
       <Link
@@ -36,7 +36,6 @@ export const TrackCard = ({ track }) => {
           pathname: `details/${track.id}`,
         }}
         passHref
-        style={{ textDecoration: "none" }}
       >
         <CardMedia
           component="img"
@@ -45,7 +44,7 @@ export const TrackCard = ({ track }) => {
         />
       </Link>
 
-      <Grid container direction="row" sx={{ p: 10 }}>
+      <Grid container direction="row" sx={{ p: "1rem" }}>
         <Grid item container direction="column" xs={10}>
           <Grid item>
             <Typography fontWeight="bold" variant="h3">

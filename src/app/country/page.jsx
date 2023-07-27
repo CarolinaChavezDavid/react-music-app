@@ -7,6 +7,7 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import Image from "next/image";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { countriesListId } from "../api/countriesListId";
@@ -31,7 +32,7 @@ export default function Page() {
   const title = `${country.countryImage} Top 50 ${country.countryName}`;
 
   return (
-    <Container maxWidth="xl" sx={{ pt: "100px", pb: "250px" }}>
+    <Container maxWidth="xl" sx={{ p: "100px 0 250px 0" }}>
       <Box
         sx={{
           display: "flex",
@@ -41,26 +42,33 @@ export default function Page() {
           mt: "2rem",
         }}
       >
-        <img
-          style={{ width: 50, height: 50, mx: "1rem" }}
-          src="./images/lupa.png"
-          alt="logo"
-        />
         <Paper
           component="form"
           sx={{
-            p: "2px 4px",
-            width: 500,
-            mx: "1rem",
+            width: "600px",
+            p: "1rem",
+            mt: "2rem",
           }}
         >
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            placeholder="Search your song"
-            onChange={(e) => setQuery(e.target.value)}
-          />
+          <Grid container>
+            <Grid item xs={11}>
+              <InputBase
+                placeholder="Search your song"
+                onChange={(e) => setQuery(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={1}>
+              <Image
+                width={"30"}
+                height={"30"}
+                src="/images/lupa.png"
+                alt="logo"
+              />
+            </Grid>
+          </Grid>
         </Paper>
       </Box>
+
       <Box
         sx={{
           display: "flex",
@@ -83,7 +91,7 @@ export default function Page() {
         ))}
       </Box>
       {countryTracks.length > 1 && (
-        <Typography variant="h2" sx={{ mb: 3 }} style={{ fontWeight: "bold" }}>
+        <Typography variant="h2" sx={{ mb: 3, fontWeight: "bold" }}>
           {title}
         </Typography>
       )}
@@ -95,8 +103,8 @@ export default function Page() {
             .map((item) => (
               <Grid
                 item
-                key={item.id}
                 display="flex"
+                key={item.id}
                 sm={6}
                 md={3}
                 sx={{ mb: "2rem" }}

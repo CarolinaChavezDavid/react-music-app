@@ -25,11 +25,7 @@ export const PlayCard = ({ track }) => {
           alt="Live from space album cover"
         />
 
-        <Typography
-          variant="h3"
-          style={{ fontWeight: "bold" }}
-          sx={{ my: "1rem" }}
-        >
+        <Typography variant="h3" sx={{ my: "1rem", fontWeight: "bold" }}>
           {track.name}
         </Typography>
         {track.artists.map((item) => (
@@ -38,7 +34,7 @@ export const PlayCard = ({ track }) => {
           </Typography>
         ))}
 
-        <Box sx={{ mt: 3 }}>
+        <Box sx={{ my: "1rem" }}>
           {track.previewUrl && (
             <audio controls="controls">
               <source src={track.previewUrl} type="audio/mpeg" />

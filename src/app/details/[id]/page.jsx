@@ -9,14 +9,10 @@ import { DetailListHeader } from "./components/DetailListHeader";
 import { PlayCard } from "./components/PlayCard";
 
 export default function Page() {
-  // `${track.artists[0].id}`
   const track = useSelector((state) => state.track);
-  console.log("tracls", track);
   const { artistTrackList, isLoading } = useArtistTopTracks(
     track.artists[0].id
   );
-
-  console.log("artistList", artistTrackList);
 
   if (isLoading) {
     return (
@@ -27,15 +23,9 @@ export default function Page() {
   }
 
   return (
-    <Container
-      maxWidth="xl"
-      sx={{
-        pt: "100px",
-        pb: "250px",
-      }}
-    >
+    <Container maxWidth="xl" sx={{ p: "100px 0 250px 0" }}>
       {artistTrackList && <DetailHeader artist={artistTrackList} />}
-      <Grid container sx={{ mt: 10 }} spacing={15}>
+      <Grid container spacing={15} sx={{ mt: "10px" }}>
         <Grid item xs={4}>
           <Box>
             <PlayCard key={track.id} track={track} />

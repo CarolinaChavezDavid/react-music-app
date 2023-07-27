@@ -19,7 +19,7 @@ export const FavoriteButton = ({ track }) => {
     <Box>
       <FontAwesomeIcon
         icon={faHeart}
-        onClick={() => handleToogle()}
+        onClick={handleToogle}
         className={
           "Heart" +
           (favoriteTracks.length > 0 &&

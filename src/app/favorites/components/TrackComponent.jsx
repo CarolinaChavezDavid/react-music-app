@@ -20,18 +20,24 @@ export const TrackComponent = ({ track }) => {
         my: 5,
       }}
     >
-      <Grid container direction="row" justifyContent="left" alignItems="center">
-        <Grid item sx={{ mr: "2rem" }}>
-          <Avatar sx={{ width: 60, height: 60 }} src={track.album.imageUrl} />
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item xs={1}>
+          <Avatar
+            sx={{ width: "60px", height: "60px" }}
+            src={track.album.imageUrl}
+          />
         </Grid>
-        <Grid item xs={2} sx={{ mr: "2rem" }}>
+        <Grid item xs={2}>
           <TrackText variant="h4">{track.name}</TrackText>
         </Grid>
 
         <Grid item xs={3}>
-          <TrackText variant="h4" sx={{ mr: 3 }}>
-            {track.album.name}
-          </TrackText>
+          <TrackText variant="h4">{track.album.name}</TrackText>
         </Grid>
         <Grid item xs={2}>
           <TrackText variant="h4">{track.album.releaseDate}</TrackText>
