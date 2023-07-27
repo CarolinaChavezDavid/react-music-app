@@ -32,7 +32,7 @@ export default function Page() {
   const title = `${country.countryImage} Top 50 ${country.countryName}`;
 
   return (
-    <Container maxWidth="xl" sx={{ p: "100px 0 250px 0" }}>
+    <Container maxWidth="xl">
       <Box
         sx={{
           display: "flex",

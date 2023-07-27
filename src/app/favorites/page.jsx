@@ -8,7 +8,7 @@ import { TrackComponent } from "./components/TrackComponent";
 export default function Page() {
   const { favoriteTracks } = useSelector((state) => state.favorites);
   return (
-    <Container maxWidth="xl" sx={{ p: "100px 0 250px, 0", mt: "10rem" }}>
+    <Container maxWidth="xl" sx={{ p: "100px 0 250px, 0", mt: "2rem" }}>
       <Typography
         variant="h2"
         sx={{ m: "10px 0 3px 0", fontWeight: "bold" }}

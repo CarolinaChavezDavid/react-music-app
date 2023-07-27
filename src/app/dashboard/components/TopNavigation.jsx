@@ -60,7 +60,7 @@ export const TopNavigation = () => {
   ];
 
   return (
-    <CustomHeader>
+    <CustomHeader position="sticky">
       <Container maxWidth="xl" component="nav" sx={{ p: "1rem" }}>
         <Grid container alignItems="center" spacing={6}>
           <Grid item>

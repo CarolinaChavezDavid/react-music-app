@@ -40,6 +40,8 @@ export const TrackCard = ({ track }) => {
         <CardMedia
           component="img"
           image={track.album.imageUrl}
+          width="300xp"
+          height="300xp"
           alt="Live from space album cover"
         />
       </Link>

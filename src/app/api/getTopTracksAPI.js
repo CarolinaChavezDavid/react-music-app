@@ -37,6 +37,7 @@ export const getTrackList = async (playListsID) => {
 
   if (response.ok) {
     const jsonResponse = await response.json();
+    console.log("response", jsonResponse);
     const finalTracks = jsonResponse.tracks.items.map((item) => ({
       id: item.track.id,
       name: item.track.name,
@@ -57,7 +58,7 @@ const transformAlbum = (album) => {
     albumType: album.album_type,
     artist: transFormArtist(album.artists),
     releaseDate: album.release_date,
-    imageUrl: album.images[0].url,
+    imageUrl: album.images[1].url,
   };
 };
 

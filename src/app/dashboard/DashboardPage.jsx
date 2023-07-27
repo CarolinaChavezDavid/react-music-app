@@ -21,7 +21,7 @@ export const DashboardPage = () => {
 
   return (
     !isLoading && (
-      <Container maxWidth="xl" sx={{ pt: "100px", pb: "250px" }}>
+      <Container maxWidth="xl" sx={{ pb: "250px" }}>
         <Box
           sx={{
             display: "flex",
@@ -64,7 +64,10 @@ export const DashboardPage = () => {
           🌎 Top global
         </Typography>
 
-        <Grid container>
+        <Grid
+          container
+          sx={{ justifyContent: "center", alignContent: "center" }}
+        >
           {topTrackList
             .filter((track) => track.name.toLowerCase().includes(query))
             .map((item) => (
