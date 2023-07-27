@@ -1,5 +1,6 @@
-import { Card, CardMedia, Grid, Typography, styled } from "@mui/material";
+import { Card, Grid, Typography, styled } from "@mui/material";
 import Link from "next/link";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useDispatch } from "react-redux";
 import { setTrackDetailInformation } from "../../state/services/thunks";
 import { FavoriteButton } from "./FavoriteButton";
@@ -37,11 +38,8 @@ export const TrackCard = ({ track }) => {
         }}
         passHref
       >
-        <CardMedia
-          component="img"
-          image={track.album.imageUrl}
-          width="300xp"
-          height="300xp"
+        <LazyLoadImage
+          src={track.album.imageUrl}
           alt="Live from space album cover"
         />
       </Link>

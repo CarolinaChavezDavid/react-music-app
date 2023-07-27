@@ -20,8 +20,6 @@ export default function Page() {
 
   const { countryTracks } = useSelector((state) => state.countryTracks);
 
-  console.log("initialTracks", countryTracks);
-
   const [country, setCountry] = useState(countriesListId[0]);
   const [query, setQuery] = useState("");
 
