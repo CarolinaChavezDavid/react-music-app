@@ -21,7 +21,7 @@ export const DashboardPage = () => {
 
   return (
     !isLoading && (
-      <Container maxWidth="xl" sx={{ p: "100px 0 250px 0" }}>
+      <Container maxWidth="xl" sx={{ pt: "100px", pb: "250px" }}>
         <Box
           sx={{
             display: "flex",
