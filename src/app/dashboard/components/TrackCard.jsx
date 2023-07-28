@@ -1,13 +1,6 @@
-import {
-  Box,
-  Card,
-  CardMedia,
-  CircularProgress,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Card, Grid, Typography } from "@mui/material";
 import Link from "next/link";
-import { useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useDispatch } from "react-redux";
 import { setTrackDetailInformation } from "../../state/services/thunks";
 import { FavoriteButton } from "./FavoriteButton";
@@ -15,14 +8,8 @@ import { FavoriteButton } from "./FavoriteButton";
 export const TrackCard = ({ track }) => {
   const dispatch = useDispatch();
 
-  const [imageLoaded, setimageLoaded] = useState(false);
-
   const handelUpdate = () => {
     dispatch(setTrackDetailInformation(track));
-  };
-
-  const onImageLoaded = () => {
-    setimageLoaded(!imageLoaded);
   };
 
   return (
@@ -45,25 +32,13 @@ export const TrackCard = ({ track }) => {
         }}
         passHref
       >
-        <CardMedia
-          component="img"
-          image={track.album.imageUrl}
-          onLoad={onImageLoaded}
+        <LazyLoadImage
+          width={300}
+          height={300}
+          src={track.album.imageUrl}
+          effect="blur"
           alt="Live from space album cover"
-          sx={{
-            width: 300,
-            height: 300,
-            "&:hover": {
-              backgroundColor: "primary.main",
-              opacity: [0.9, 0.8, 0.7],
-            },
-          }}
         />
-        {!imageLoaded && (
-          <Box sx={{ display: "flex" }}>
-            <CircularProgress />
-          </Box>
-        )}
       </Link>
 
       <Grid container direction="row" sx={{ p: "1rem" }}>
