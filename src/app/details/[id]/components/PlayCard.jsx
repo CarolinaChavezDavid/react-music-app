@@ -25,7 +25,11 @@ export const PlayCard = ({ track }) => {
           alt="Live from space album cover"
         />
 
-        <Typography variant="h3" sx={{ my: "1rem", fontWeight: "bold" }}>
+        <Typography
+          variant="h3"
+          align="center"
+          sx={{ my: "1rem", fontWeight: "bold" }}
+        >
           {track.name}
         </Typography>
         {track.artists.map((item) => (

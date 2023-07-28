@@ -24,7 +24,7 @@ const Link = styled(CustomLink)(({ theme }) => ({
     opacity: 1,
   },
   "&:active": {
-    background: `linear-gradient(90deg, #FF00E6, #FFFFFF)`,
+    background: `linear-gradient(90deg, #4C0BD1, #7900FF)`,
   },
 }));
 

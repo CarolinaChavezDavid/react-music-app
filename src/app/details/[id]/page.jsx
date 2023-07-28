@@ -23,7 +23,7 @@ export default function Page() {
   }
 
   return (
-    <Container maxWidth="xl" sx={{ p: "100px 0 250px 0" }}>
+    <Container maxWidth="xl">
       {artistTrackList && <DetailHeader artist={artistTrackList} />}
       <Grid container spacing={15} sx={{ mt: "10px" }}>
         <Grid item xs={4}>

@@ -1,6 +1,13 @@
-import { Card, Grid, Typography, styled } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardMedia,
+  CircularProgress,
+  Grid,
+  Typography,
+} from "@mui/material";
 import Link from "next/link";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setTrackDetailInformation } from "../../state/services/thunks";
 import { FavoriteButton } from "./FavoriteButton";
@@ -8,29 +15,29 @@ import { FavoriteButton } from "./FavoriteButton";
 export const TrackCard = ({ track }) => {
   const dispatch = useDispatch();
 
+  const [imageLoaded, setimageLoaded] = useState(false);
+
   const handelUpdate = () => {
     dispatch(setTrackDetailInformation(track));
   };
 
-  const TrackCard = styled(Card)(({ theme }) => ({
-    backgroundColor: "#121640",
-    textTransform: "none",
-    width: "300",
-    boxShadow: "0px 13px 48px 14px rgba(0,0,0,0.1)",
-  }));
+  const onImageLoaded = () => {
+    setimageLoaded(!imageLoaded);
+  };
 
   return (
-    <TrackCard
+    <Card
+      className=" animate__animated animate__fadeInLeft"
       sx={{
-        width: "300px",
+        width: 300,
         backgroundColor: "#121640",
+        boxShadow: "0px 13px 48px 14px rgba(0,0,0,0.1)",
         "&:hover": {
           backgroundColor: "primary.main",
           opacity: [0.9, 0.8, 0.7],
         },
       }}
       onClick={handelUpdate}
-      className=" animate__animated animate__fadeInLeft"
     >
       <Link
         href={{
@@ -38,10 +45,25 @@ export const TrackCard = ({ track }) => {
         }}
         passHref
       >
-        <LazyLoadImage
-          src={track.album.imageUrl}
+        <CardMedia
+          component="img"
+          image={track.album.imageUrl}
+          onLoad={onImageLoaded}
           alt="Live from space album cover"
+          sx={{
+            width: 300,
+            height: 300,
+            "&:hover": {
+              backgroundColor: "primary.main",
+              opacity: [0.9, 0.8, 0.7],
+            },
+          }}
         />
+        {!imageLoaded && (
+          <Box sx={{ display: "flex" }}>
+            <CircularProgress />
+          </Box>
+        )}
       </Link>
 
       <Grid container direction="row" sx={{ p: "1rem" }}>
@@ -65,6 +87,6 @@ export const TrackCard = ({ track }) => {
           </Grid>
         </Grid>
       </Grid>
-    </TrackCard>
+    </Card>
   );
 };
